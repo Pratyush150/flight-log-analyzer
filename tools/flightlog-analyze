@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+"""Runnable CLI wrapper.
+
+Works straight from a git checkout without installing the package: it adds
+``src/`` to ``sys.path`` if ``flightlog`` is not already importable. Once the
+package is installed (``pip install -e .``) the same command is available as
+the ``flightlog-analyze`` console script.
+"""
+
+from __future__ import annotations
+
+import os
+import sys
+
+try:
+    import flightlog  # noqa: F401
+except ImportError:
+    _SRC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src")
+    if os.path.isdir(_SRC):
+        sys.path.insert(0, _SRC)
+
+from flightlog.cli import main
+
+if __name__ == "__main__":
+    raise SystemExit(main())

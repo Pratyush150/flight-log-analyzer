@@ -1,0 +1,12 @@
+# Core runtime. This is the whole hard dependency list.
+numpy>=1.21
+
+# Tests
+pytest>=7.0
+
+# Optional log readers. Neither is required: the package imports, the tests
+# pass and `flightlog-analyze --demo` runs without them. Install the one that
+# matches the logs you actually have.
+#
+#   pyulog>=1.0      # PX4 .ulg
+#   pymavlink>=2.4   # ArduPilot .bin / .log

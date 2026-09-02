@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flight-log-analyzer"
+version = "0.1.0"
+description = "Automated health reports from PX4 ULog and ArduPilot dataflash flight logs"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Pratyush Vatsa" }]
+keywords = ["px4", "ardupilot", "ulog", "dataflash", "drone", "uav", "log-analysis"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = ["numpy>=1.21"]
+
+[project.optional-dependencies]
+ulog = ["pyulog>=1.0"]
+dataflash = ["pymavlink>=2.4"]
+all = ["pyulog>=1.0", "pymavlink>=2.4"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+flightlog-analyze = "flightlog.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
