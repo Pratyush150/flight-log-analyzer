@@ -31,6 +31,23 @@ analyzers actually detect what they claim to.
 
 ---
 
+## Screenshots
+
+Every image below is the report that `tools/flightlog-analyze --demo --html report.html`
+writes, on a synthetic flight with defects deliberately injected so the detections
+can be checked against known ground truth.
+
+![Top of the HTML flight report: verdict banner, severity counts and the first two ranked findings](docs/screenshots/html-report.png)
+The top of the report. A one-line verdict, the severity counts, then findings ranked worst-first with the mechanism, the evidence and a concrete action for each.
+
+![Brownout finding with per-cell voltage evidence and a battery voltage against throttle plot](docs/screenshots/html-report-brownout.png)
+A single finding in full: minimum pack voltage 19.65 V (3.27 V per cell) at t=9.0 s, with the offending window shaded on the voltage-and-throttle plot the analyzer drew from the log.
+
+![Welch spectrum of accel.x with peaks marked at 8 Hz, 18 Hz and 92 Hz](docs/screenshots/vibration-spectrum.png)
+The vibration analyzer's Welch spectrum of `accel.x`, with the dominant 92 Hz peak labelled. That peak is what the tool uses to separate prop imbalance from a frame resonance.
+
+---
+
 ## What the output looks like
 
 ```
